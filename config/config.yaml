@@ -1,0 +1,26 @@
+## Paths
+raw_data_base_path: "/home/ignasi/Desktop/DNA_pipeline/raw_data/"
+results_base_path: "/home/ignasi/Desktop/DNA_pipeline/results/"
+logs_and_bmk_base_path: "/home/ignasi/Desktop/DNA_pipeline/logs_and_bmk_base_path/"
+
+## Reff files
+genome: "/home/ignasi/Desktop/DNA_pipeline/ressources/Human_filtered_chr21_chr17_chrX_chrY.fa.gz"
+
+## Samples to work on
+samples:
+  SRR359970:
+    R1: "/home/ignasi/Desktop/DNA_pipeline/raw_data/SRR359970_1.fastq.gz"
+    R2: "/home/ignasi/Desktop/DNA_pipeline/raw_data/SRR359970_2.fastq.gz"
+    sex: M
+  SRR359972:
+    R1: "/home/ignasi/Desktop/DNA_pipeline/raw_data/SRR359972_1.fastq.gz"
+    R2: "/home/ignasi/Desktop/DNA_pipeline/raw_data/SRR359972_2.fastq.gz"
+    sex: M
+
+## Samples to work on
+images:
+  fastqc_singularity: "/home/ignasi/Desktop//DNA_pipeline/images_and_conda_envs/fastqc_v0.11.9_cv8.sif"
+  multiqc_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/multiqc_v1.35.sif"
+  trimmomatic_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/trimmomatic_0.40.sif"
+  bwa_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/bwa_0.7.18.sif"
+  samtools_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/samtools_1.16.1.sif"
