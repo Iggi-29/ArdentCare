@@ -5,6 +5,7 @@ logs_and_bmk_base_path: "/home/ignasi/Desktop/DNA_pipeline/logs_and_bmk_base_pat
 
 ## Reff files
 genome: "/home/ignasi/Desktop/DNA_pipeline/ressources/Human_filtered_chr21_chr17_chrX_chrY.fa.gz"
+genome_unc: "/home/ignasi/Desktop/DNA_pipeline/ressources/Human_filtered_chr21_chr17_chrX_chrY.fa"
 
 ## Samples to work on
 samples:
@@ -24,3 +25,4 @@ images:
   trimmomatic_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/trimmomatic_0.40.sif"
   bwa_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/bwa_0.7.18.sif"
   samtools_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/samtools_1.16.1.sif"
+  varscan_singularity: "/home/ignasi/Desktop/DNA_pipeline/images_and_conda_envs/varscan_v2.4.2.sif"

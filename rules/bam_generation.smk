@@ -55,11 +55,13 @@ rule samtools:
         sam = results_base_path + "{sample}/alignments/{sample}.sam"
     params:
         out_dir = results_base_path + "{sample}/alignments/",
+        genome_unc = genome_unc
     output:
         bam = temp(results_base_path + "{sample}/alignments/{sample}.bam"),
         sorted_bam = results_base_path + "{sample}/alignments/{sample}_sorted.bam",
         sorted_bam_idx = results_base_path + "{sample}/alignments/{sample}_sorted.bam.bai",
-        sorted_bam_stats = results_base_path + "{sample}/alignments/{sample}_sorted.bam.stats"
+        sorted_bam_stats = results_base_path + "{sample}/alignments/{sample}_sorted.bam.stats",
+        mpileup_file = temp(results_base_path + "{sample}/alignments/{sample}.mpileup")
     container: 
         config["images"]["samtools_singularity"]
     benchmark:
@@ -68,13 +70,15 @@ rule samtools:
         samtools_view = logs_and_bmk_base_path + "log/{sample}_samtools_view.log",
         samtools_sort = logs_and_bmk_base_path + "log/{sample}_samtools_sort.log",
         samtools_index = logs_and_bmk_base_path + "log/{sample}_samtools_index.log",
-        samtools_flagstat = logs_and_bmk_base_path + "log/{sample}_samtools_flagstat.log"
+        samtools_flagstat = logs_and_bmk_base_path + "log/{sample}_samtools_flagstat.log",
+        samtools_pileup = logs_and_bmk_base_path + "log/{sample}_samtools_pileup.log"
     threads: 5
     shell:"""
         samtools view -@ {threads} -b -S {input.sam} > {output.bam} 2>> {log.samtools_view}
         samtools sort -m 4900M -@ {threads} {output.bam} -o {output.sorted_bam} 2>> {log.samtools_sort}
         samtools index {output.sorted_bam} -o {output.sorted_bam_idx} 2>> {log.samtools_index}
         samtools flagstat {output.sorted_bam} > {output.sorted_bam_stats} 2>> {log.samtools_flagstat}
+        samtools mpileup -B -f {params.genome_unc} {output.sorted_bam} > {output.mpileup_file} 2>> {log.samtools_pileup}
         """
 
 rule trigger_bam_generation:

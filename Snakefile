@@ -16,12 +16,15 @@ samples = [s for s in config["samples"]]
 
 ## reference files
 genome = config["genome"]
+genome_unc = config["genome_unc"]
 
 ### get the rules
 include: "rules/qc_analysis.smk"
 include: "rules/bam_generation.smk"
+include: "rules/variant_calling.smk"
 
 rule all:
     input:
         rules.trigger_qc_analysis.input,
-        rules.trigger_bam_generation.input
+        rules.trigger_bam_generation.input,
+        rules.trigger_vcf_generation.input
